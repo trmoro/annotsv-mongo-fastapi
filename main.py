@@ -57,7 +57,7 @@ if db is not None:
 				#Retrieve title and read full line
 				cnv = cnvs.cnv[nCNV]
 				acmg_criteria = tabs[108].split(";")
-				score = tabs[107]
+				score = float(tabs[107])
 				if score > 1:
 					score = 1
 				elif score < -1:

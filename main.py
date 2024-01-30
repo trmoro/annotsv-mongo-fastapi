@@ -58,10 +58,10 @@ if db is not None:
 				cnv = cnvs.cnv[nCNV]
 				acmg_criteria = tabs[108].split(";")
 				score = float(tabs[107])
-				if score > 1:
-					score = 1
-				elif score < -1:
-					score = -1
+				#if score > 1:
+				#	score = 1
+				#elif score < -1:
+				#	score = -1
 				nCNV += 1
 				mongo_item = {"title":cnv,"acmg_criteria":acmg_criteria,"score":score}
 

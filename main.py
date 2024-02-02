@@ -49,20 +49,29 @@ if db is not None:
 		#Read
 		f = open("./AnnotSV/bin/{}".format(file_name + ".tsv"),"r")
 		data = f.read()
-		nCNV = 0
 		for l in data.split("\n"):
 			tabs = l.split("\t")
 			if len(tabs)> 108 and tabs[7] == "full":
 
-				#Retrieve title and read full line
-				cnv = cnvs.cnv[nCNV]
+				#Make title
+				start = int(tabs[2]) - 1
+				cnv = cnvs.ref.lower() + "-chr" + tabs[1] + "-" + str(start) + "-" + tabs[3] + "-"
+				var_type = "gain"
+				if tabs[5] == "DEL":
+					var_type = "loss"
+				cnv += var_type
+				print(cnv, cnvs.ref)
+
+				#Retrieve criteria and score
 				acmg_criteria = tabs[108].split(";")
 				score = float(tabs[107])
+
+				#Score bounding
 				#if score > 1:
 				#	score = 1
 				#elif score < -1:
 				#	score = -1
-				nCNV += 1
+
 				mongo_item = {"title":cnv,"acmg_criteria":acmg_criteria,"score":score}
 
 				#Upload result

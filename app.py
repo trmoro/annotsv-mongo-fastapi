@@ -69,6 +69,17 @@ from flask import request
 
 app = Flask(__name__)
 
+@app.route("/single", methods=["GET"])
+def single():
+	t = time.time()
+	logger.log_text("AnnotSV Single")
+	title = request.args.get("title")
+	data = title.split("-")
+	cnv = {"ref": data[0], "chr": data[1], "start": int(data[2]), "end": int(data[3]), "type": data[4]}
+	compute_annotsv(title, [cnv])
+	logger.log_text(str(round(time.time() - t,2)) + " AnnotSV CNV-Hub finished !")
+	return {"text":"AnnotSV Single OK !"}
+
 @app.route("/batch", methods=["GET"])
 def batch():
 	t = time.time()

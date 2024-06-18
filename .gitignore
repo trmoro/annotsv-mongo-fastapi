@@ -1,10 +1,9 @@
-#Cloud credentials file
-cloud/mongo_credentials.config
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+.vs/*
 
 # C extensions
 *.so

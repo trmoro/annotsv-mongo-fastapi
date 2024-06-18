@@ -1,0 +1,4 @@
+requests
+pymongo==4.5.0
+flask
+google-cloud-logging

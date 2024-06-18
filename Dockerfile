@@ -4,6 +4,7 @@ FROM python:3.8-slim
 COPY . ./
 
 # Copy AnnotSV
+RUN apt-get update
 RUN apt-get install -y wget tar
 RUN wget https://storage.googleapis.com/cnvhub/AnnotSV.tar.gz
 RUN tar -xzvf AnnotSV.tar.gz

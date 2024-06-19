@@ -40,7 +40,7 @@ def compute_annotsv(batch_id,genomics_coordinates):
 	#Execute ClassifyCNV and convert result to regular dict
 	os.system("cd ./AnnotSV/bin && ./AnnotSV -SVinputFile {} -outputFile {} -svtBEDcol 4 -genomeBuild {}".format(filename,filename,ref) )
 	if os.path.isfile(filename + ".tsv"):
-		data = open(filename + ".tsv","r")
+		data = open(filename + ".tsv","r").read()
 		for l in data.split("\n"):
 			tabs = l.split("\t")
 			if len(tabs)> 108 and tabs[7] == "full":

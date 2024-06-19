@@ -5,7 +5,7 @@ COPY . ./
 
 # Install dependencies and copy AnnotSV
 RUN apt-get update
-RUN apt-get install -y wget tar tclsh bedtools
+RUN apt-get install -y wget tar tclsh bedtools bcftools
 RUN wget https://storage.googleapis.com/cnvhub/AnnotSV.tar.gz
 RUN tar -xzvf AnnotSV.tar.gz
 

@@ -47,7 +47,7 @@ def compute_annotsv(batch_id,genomics_coordinates):
 
 				#Make title
 				start = int(tabs[2]) - 1
-				title = ref + "-chr" + tabs[1] + "-" + str(start) + "-" + tabs[3] + "-"
+				title = genomics_coordinates[0]["ref"] + "-chr" + tabs[1] + "-" + str(start) + "-" + tabs[3] + "-"
 				var_type = "gain"
 				if tabs[5] == "DEL":
 					var_type = "loss"
@@ -60,8 +60,6 @@ def compute_annotsv(batch_id,genomics_coordinates):
 				
 				#Save to mongo
 				save(item["title"], item)
-
-		data.close()
 		
 ##############Entrypoint for GCP
 from flask import Flask

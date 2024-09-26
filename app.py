@@ -10,14 +10,16 @@ logger = logging_client.logger(log_name)
 ########################## SCRIPT TO CALL AnnotSV IF ITS INSTALLED ON SYSTEM
 ########################## AnnotSV IS USED FOR ACMG ANALYSIS
 
-from mongo import get_mongo_db
+from mongo import get_mongo_db, get_mongo_db2
 client_db, db = get_mongo_db()
+client_db2, db2 = get_mongo_db2()
 logger.log_text("AnnotSV MongoDB connection opened")
 
 #Save to Mongo, made
 def save(title,row):
 	filt = {"title": title}
 	db["annotsv"].replace_one(filt , row, upsert=True)
+	db2["annotsv"].replace_one(filt , row, upsert=True)
 	logger.log_text(title + " AnnotSV value updated !")
 
 #Compute ACMG

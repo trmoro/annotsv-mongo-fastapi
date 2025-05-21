@@ -86,7 +86,12 @@ def batch():
 	t = time.time()
 	logger.log_text("AnnotSV Batch")
 	batch_id = request.args.get("id")
-	batch_data = db["cnvhub_batch"].find_one({'_id':ObjectId(batch_id)})["genomicCoordinates"]
+	batch = None
+	if '-' not in batch_id:
+		batch = db["cnvhub_batch"].find_one({'_id':ObjectId(batch_id)})
+	else:
+		batch = db2["cnvhub_batch"].find_one({'batchId':batch_id})
+	batch_data = batch["genomicCoordinates"]
 	compute_annotsv(batch_id, batch_data)
 	logger.log_text(str(round(time.time() - t,2)) + " AnnotSV CNV-Hub finished !")
 	return {"text":"AnnotSV Batch OK !"}
